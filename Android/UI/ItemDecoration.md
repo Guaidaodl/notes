@@ -19,5 +19,5 @@ ItemDecoration 的 API 其实比较简单, 主要只有三个接口:
 ## Tips
 
 ## 参考文章
-- [RecyclerView之ItemDecoration](https://juejin.im/post/59099fe844d904006942a983)
-- [RecyclerView.ItemDecoration](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration)
+- [RecyclerView 之 ItemDecoration](https://juejin.im/post/59099fe844d904006942a983)
+- [RecyclerView.ItemDecoration](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ItemDecoration)
