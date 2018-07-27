@@ -9,11 +9,11 @@
 
 ## 性能测试工具
 
-- Layout Inspector
+### Layout Inspector
 Hierarchy Viewer 已经被从 SDK 中移除. 现在 Google 推荐使用 [Layout Inspector](https://developer.android.com/studio/debug/layout-inspector)
 可以更方便地查看View 的层次结构.
 
-- systrace
+### systrace
 用于进行性能分析.
 
 
