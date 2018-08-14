@@ -50,7 +50,19 @@ DRY 原则。尽量不要用重复的代码。
 
 ## Divergent Change(发散式改变)
 
+一个类可能因为多种不同的原因被改变, 证明该类应该被拆分成多个类.
+
+相关重构方法:
+- Extract Class
+
 ## Shotgun Surgery(散弹式修改)
+
+跟 Divergent Change 相反, 同一个变化会造成多个类的改变.
+
+相关重构方法:
+- Move Method
+- Move Field
+- Inline Class
 
 ## Feature Envy
 
