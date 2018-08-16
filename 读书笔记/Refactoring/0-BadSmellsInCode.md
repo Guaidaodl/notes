@@ -1,6 +1,6 @@
 # 坏代码的味道
 
-## Deplicated 重复的代码.
+## Deplicated (重复的代码)
 
 DRY 原则。尽量不要用重复的代码。
 
@@ -48,14 +48,14 @@ DRY 原则。尽量不要用重复的代码。
 - Preverse Whole Object
 - Introduce Parameter Object
 
-## Divergent Change(发散式改变)
+## Divergent Change (发散式改变)
 
 一个类可能因为多种不同的原因被改变, 证明该类应该被拆分成多个类.
 
 相关重构方法:
 - Extract Class
 
-## Shotgun Surgery(散弹式修改)
+## Shotgun Surgery (散弹式修改)
 
 跟 Divergent Change 相反, 同一个变化会造成多个类的改变.
 
@@ -64,23 +64,83 @@ DRY 原则。尽量不要用重复的代码。
 - Move Field
 - Inline Class
 
-## Feature Envy
+## Feature Envy (依恋情结)
 
-## Data Clumps
+一个类的方法里过多的依赖另外一个类, 比如大量调用另一个类的 getter 来进行计算. 这样的类
+显然更适合放到另一个类中.
 
-## Primitive Obsession
+有一些设计模式违背了这个原则, 比如 Strategy 和 Visitor 模式. 所以遇到时需要确定不是特
+意做成这样的.
+
+相关重构方法:
+- Move Method
+- Extract Method- [Extract Method](1-ComposingMethod.md#1-1)
+
+## Data Clumps (数据泥团)
+
+如果某些数据总是一起出现. 比如一起作为某个类的成员变量, 作为函数的参数. 这时应该将这些
+数据包装成一个类.
+
+包装成一个类以后会减少一些坏味道, 但是还会造成其他的*坏味道*. 比如 Feature Envy, Data Class,
+Inappropriate Imaticy 等. 所以分析这些数据的使用方式来继续优化.
+
+相关重构方法:
+- Extract Class
+- Introduce Parameter Object
+- Perserve Whole Object
+
+## Primitive Obsession (基本类型偏执)
+
+偏爱基本类型, 抗拒使用一些简单的类. 这应该也是造成数据泥团的重要原因.
+
+相关重构方法:
+- Replace Data Value with Object
+- Replace Type Code with Class
+- Replace Type Code with Subclass
+- Replace Type Code with Stragety
+- Extact Class
+- Introduct Parameter Object
 
 ## Switch Statements
 
-## Parallel Inheritance Hierarchies
+大部分的 Switch 语句都可以利用多态以更优雅的形式来实现. 如果只有一两个方法需要用到大量
+的 Switch 语句则没有必要进行重构.
 
-## Lazy Class
+## Parallel Inheritance Hierarchies (平行继承体系)
 
-## Speculative Generality
+Shotgun Surgery 的一种, 当你为某个类创建一个子类时, 也需要为另一个创建一个子类.
 
-## Temporary Field
+相关重构方法:
+- Move Method
+- Move Field
 
-## Message Chains(过度耦合的消息链)
+## Lazy Class (冗赘类)
+
+一些类如果不能起到足够的作用, 那就应该被铲除.
+
+相关重构方法:
+- Collapse Hierarchy
+- Inline Class
+
+## Speculative Generality (夸夸奇谈的未来性)
+
+为了某些不确定的需求和变化增加了代码复杂度. 简单来说就是过度设计.
+
+相关重构方法:
+- Collapse Hierarchy
+- Inline Class
+- Remove Parameter
+- Rename Method
+
+## Temporary Field (临时属性)
+
+一些类的成员变量只是用来记住一些临时的属性. 比如一个初始化的参数.
+
+相关重构方法:
+- Extract Class
+- Introduce Null Object
+
+## Message Chains (过度耦合的消息链)
 
 调用者会连续使用 get 方法来获得一个信息. 比如:
 ```java
