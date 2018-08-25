@@ -53,21 +53,27 @@ Extract Method.
 
 ### 相关联的方法:
 - [Split Temporaty Variable](#1-6) 解决临时变量被引用多次的问题
-- [Separate Query from Modifier](5-MakingMethodCallSimple.md#5-4) 解决表达式用副作用的问题
+- [Separate Query from Modifier](5-MakingMethodCallSimple.md#5-4) 解决表达式用副
+  作用的问题
 - [Extract Method](#1-1) 进一步优化
 
 
 ## Introduce Explaining Variable <p id="1-5"></p>
+把整个或者部分表达式的结果存在一个临时变量中. 用一个有意义的名字命名这个变量来提高代码的
+可读性.
+
+这个方法的用途其实跟 Extract Method 类似. 书中建议只有 Extract Method 的代价比较高时
+才使用此方法
 
 
 ## Split Temporary Variable <p id="1-6"></p>
-
 如果有一个临时变量被重复赋值, 且该变量并不是循环变量或者用来迭代的变量时, 应该在每次赋值
 的时候都采用一个单独的临时变量.(从 Java 的角度就是尽量将临时变量定义成 final)
 
 ### 原因:
 如果一个临时变量被赋值多次, 说明该变量有多个职责. 这个是不应该出现的, 所以每次赋值应该使
 用一个新的变量.
+
 
 ## Remove Assignments to Parameters <p id="1-7"/>
 
@@ -76,7 +82,17 @@ Extract Method.
 ### 原因:
 可以让对参数的使用保持一致性.
 
-## Replace Method with Method Object <p id="1-8"/>
 
+## Replace Method with Method Object <p id="1-8"/>
+当一个长方法使用了过多的临时变量导致无法使用 Extract Method 进行重构时. 可以新建一个类,
+将所有的临时变量都变成这个类的域(最好是 final). 然后将该方法移入该类.
+
+### 动机
+简化方法. 当所有的临时变量变成类的成员变量后, 就可以对该方法用 Extract Method 进行重构
+优化了.
+
+
+## Substitute Algorithm <p  id="1-9">
+将方法用一个更清晰的算法重写
 
 
