@@ -9,7 +9,7 @@ DRY 原则。尽量不要用重复的代码。
 - Pull up Field
 - Form Template Method
 - Substitute Algorithm
-- Extract Class
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
 
 ## Long Method (长方法)
 
@@ -30,7 +30,7 @@ DRY 原则。尽量不要用重复的代码。
 该类拥有的变量的个数. 
 
 相关的重构方法:
-- Extract Class
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
 - Extract Subclass
 - Extract Interface
 - Duplicate Observed Data
@@ -53,28 +53,28 @@ DRY 原则。尽量不要用重复的代码。
 一个类可能因为多种不同的原因被改变, 证明该类应该被拆分成多个类.
 
 相关重构方法:
-- Extract Class
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
 
 ## Shotgun Surgery (散弹式修改)
 
 跟 Divergent Change 相反, 同一个变化会造成多个类的改变.
 
 相关重构方法:
-- Move Method
-- Move Field
-- Inline Class
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
+- [Move Field](2-MovingFeaturesBetweenClasses.md#2-2)
+- [Inline Class](2-MovingFeaturesBetweenClasses.md#2-4)
 
 ## Feature Envy (依恋情结)
 
-一个类的方法里过多的依赖另外一个类, 比如大量调用另一个类的 getter 来进行计算. 这样的类
-显然更适合放到另一个类中.
+一个类的方法里过多的依赖另外一个类, 比如大量调用另一个类的 getter 来进行计算. 
+这样的类显然更适合放到另一个类中.
 
-有一些设计模式违背了这个原则, 比如 Strategy 和 Visitor 模式. 所以遇到时需要确定不是特
-意做成这样的.
+有一些设计模式违背了这个原则, 比如 Strategy 和 Visitor 模式. 
+所以遇到时需要确定不是特意做成这样的, 如果不是再进行重构.
 
 相关重构方法:
-- Move Method
-- Extract Method- [Extract Method](1-ComposingMethod.md#1-1)
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
+- [Extract Method](1-ComposingMethod.md#1-1)
 
 ## Data Clumps (数据泥团)
 
@@ -85,7 +85,7 @@ DRY 原则。尽量不要用重复的代码。
 Inappropriate Imaticy 等. 所以分析这些数据的使用方式来继续优化.
 
 相关重构方法:
-- Extract Class
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
 - Introduce Parameter Object
 - Perserve Whole Object
 
@@ -98,29 +98,29 @@ Inappropriate Imaticy 等. 所以分析这些数据的使用方式来继续优�
 - Replace Type Code with Class
 - Replace Type Code with Subclass
 - Replace Type Code with Stragety
-- Extact Class
+- [Extact Class](2-MovingFeaturesBetweenClasses.md#2-3)
 - Introduct Parameter Object
 
 ## Switch Statements
 
-大部分的 Switch 语句都可以利用多态以更优雅的形式来实现. 如果只有一两个方法需要用到大量
-的 Switch 语句则没有必要进行重构.
+大部分的 Switch 语句都可以利用多态以更优雅的形式来实现. 
+如果只有一两个方法需要用到大量的 Switch 语句则没有必要进行重构.
 
 ## Parallel Inheritance Hierarchies (平行继承体系)
 
 Shotgun Surgery 的一种, 当你为某个类创建一个子类时, 也需要为另一个创建一个子类.
 
 相关重构方法:
-- Move Method
-- Move Field
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
+- [Move Field](2-MovingFeaturesBetweenClasses.md#2-2)
 
 ## Lazy Class (冗赘类)
 
-一些类如果不能起到足够的作用, 那就应该被铲除.
+一些类如果不能起到足够的作用, 那就应该被删除, 减少维护的成本.
 
 相关重构方法:
 - Collapse Hierarchy
-- Inline Class
+- [Inline Class](2-MovingFeaturesBetweenClasses.md#2-4)
 
 ## Speculative Generality (夸夸奇谈的未来性)
 
@@ -128,7 +128,7 @@ Shotgun Surgery 的一种, 当你为某个类创建一个子类时, 也需要为
 
 相关重构方法:
 - Collapse Hierarchy
-- Inline Class
+- [Inline Class](2-MovingFeaturesBetweenClasses.md#2-4)
 - Remove Parameter
 - Rename Method
 
@@ -137,7 +137,7 @@ Shotgun Surgery 的一种, 当你为某个类创建一个子类时, 也需要为
 一些类的成员变量只是用来记住一些临时的属性. 比如一个初始化的参数.
 
 相关重构方法:
-- Extract Class
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
 - Introduce Null Object
 
 ## Message Chains (过度耦合的消息链)
@@ -153,9 +153,9 @@ w = z.getWW();
 Message Chains 会导致调用者和多个对象耦合. 任意一个对象的修改都会影响到调用者.
 
 相关的重构方法:
-- **Hide Delegate**
+- **[Hide Delegate](2-MovingFeaturesBetweenClasses.md#2-5)**
 - [Extract Method](1-ComposingMethod.md#1-1)
-- Move Method
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
 
 ## Middle Man (中间人)
 
@@ -165,7 +165,7 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 二者的度需要好好把握.
 
 相关重构方法:
-- Remove Middle Man
+- [Remove Middle Man](2-MovingFeaturesBetweenClasses.md#2-6)
 - Inline Method
 - Replace Delegate with Inheritance
 
@@ -175,10 +175,10 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 子类就经常知道过多父类的实现细节.
 
 相关的重构方法:
-- Move Method
-- Move Field
-- Extract Class
-- Hide Delegate
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
+- [Move Field](2-MovingFeaturesBetweenClasses.md#2-2)
+- [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
+- [Hide Delegate](2-MovingFeaturesBetweenClasses.md#2-5)
 - Change Bidirectional Association to Unidirectional
 - Replace Delegation with Inheritance 
 
@@ -188,15 +188,15 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 
 相关的重构方法:
 - Rename Method
-- Move Method
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
 - Extract Superclass
 
 ## Incomplete Library Class (不完美的库类)
 
 类库很难做的完美, 我们可以利用一些方法来让增加库的方法.
 
-- Introduce Foreign Method
-- Introduce Local Extension
+- [Introduce Foreign Method](2-MovingFeaturesBetweenClasses.md#2-7)
+- [Introduce Local Extension](2-MovingFeaturesBetweenClasses.md#2-8)
 
 ## Data Class (纯粹的数据类)
 
@@ -208,7 +208,7 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 - Encapsulate Field
 - Encasulate Collection
 - Remove setting method
-- Move Method
+- [Move Method](2-MovingFeaturesBetweenClasses.md#2-1)
 - Extact Method
 - Hide Method
 
