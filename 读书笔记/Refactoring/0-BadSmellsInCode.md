@@ -95,9 +95,9 @@ Inappropriate Imaticy 等. 所以分析这些数据的使用方式来继续优�
 
 相关重构方法:
 - Replace Data Value with Object
-- Replace Type Code with Class
-- Replace Type Code with Subclass
-- Replace Type Code with Stragety
+- [Replace Type Code with Enum](3-OrganizingData.md#3-13)
+- [Replace Type Code with Subclass](3-OrganizingData.md#3-14)
+- [Replace Type Code with Stragety](3-OrganizingData.md#3-15)
 - [Extact Class](2-MovingFeaturesBetweenClasses.md#2-3)
 - Introduct Parameter Object
 
@@ -193,7 +193,7 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 
 ## Incomplete Library Class (不完美的库类)
 
-类库很难做的完美, 我们可以利用一些方法来让增加库的方法.
+类库很难做到完美, 我们可以利用一些方法来让增加库的方法.
 
 - [Introduce Foreign Method](2-MovingFeaturesBetweenClasses.md#2-7)
 - [Introduce Local Extension](2-MovingFeaturesBetweenClasses.md#2-8)
