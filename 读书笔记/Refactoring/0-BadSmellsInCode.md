@@ -22,7 +22,7 @@ DRY 原则。尽量不要用重复的代码。
 - Instroduce Parameter Object
 - Preserve Whole Object
 - Replace Method with Method Object
-- Decompose Conditional
+- [Decompose Conditional](4-SimpliyingConditionalExpressions.md#4-1)
 
 ## Large Class (巨大的类)
 
@@ -138,7 +138,7 @@ Shotgun Surgery 的一种, 当你为某个类创建一个子类时, 也需要为
 
 相关重构方法:
 - [Extract Class](2-MovingFeaturesBetweenClasses.md#2-3)
-- Introduce Null Object
+- [Introduce Null Object](4-SimplifyingConditionalExpressions.md#4-8)
 
 ## Message Chains (过度耦合的消息链)
 
@@ -230,4 +230,4 @@ Middle Man 和 Message Chains 相关联. 改进一个问题可能会造成另外
 相关的重构方法:
 - Extract Method
 - Rename Method
-- Introduce Assersion
+- [Introduce Null Object](4-SimplifyingConditionalExpressions.md#4-8)
