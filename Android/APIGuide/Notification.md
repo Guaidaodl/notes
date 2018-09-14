@@ -1,6 +1,6 @@
 # 通知基础知识
 
-## 笔记来源
+## 笔记来源
 - Notification
   - [Overview](https://developer.android.com/guide/topics/ui/notifiers/notifications)
   - [Create Notification](https://developer.android.com/training/notify-user/build-notification)
@@ -17,7 +17,7 @@
 
 ## 关键的概念:
 
-- Group: 可以把通知分组. 系统可以把通知按组折叠.
+- Group: 可以把通知分组. 系统可以把通知按组折叠.
   
   Anroid 7.0 以上系统可用.
 
@@ -27,7 +27,7 @@
   Android 8.0 及以上的系统可用.
 
 - Importance: 通知的重要性, 共有四个等级: Urgent, Hight, Medium, Low. Android 8.0 
-  及以上的系统通知的重要性取决于其所属的 Channel 的重要性. 7.1 及以下的系统由 
+  及以上的系统通知的重要性取决于其所属的 Channel 的重要性. 7.1 及以下的系统由 
   priority 属性决定. 
   
   手机根据不同的重要性选择不同的提示方式. 比如只在通知栏, 要不要显示顶部的通知等. 不过用户可以
