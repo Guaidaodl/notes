@@ -4,6 +4,7 @@
 - Notification
   - [Overview](https://developer.android.com/guide/topics/ui/notifiers/notifications)
   - [Create Notification](https://developer.android.com/training/notify-user/build-notification)
+
 ## 通知的结构
 
 ![通知的结构](https://wx4.sinaimg.cn/large/6abde139ly1fv9ez3r940j20ny06zgmr.jpg)
@@ -33,8 +34,9 @@
   手机根据不同的重要性选择不同的提示方式. 比如只在通知栏, 要不要显示顶部的通知等. 不过用户可以
   更改提示方式.Channel 和 Importance 两个属性大大增强了用户对通知的管理能力.
 
-## 如何发送通知
+## 如何使用通知相关的 API
 
+### 发送简单通知
 - 注册 Notification Channel (API 27+)
 
   Android 8.0 以后的手机上发送通知需要指定通知所属的 Channel. 需要在程序启动时调用. 创建 Channel
@@ -44,9 +46,39 @@
 
 - 创建通知
   
-  主要使用 NotificationCompat.Build 类, 设置一些属性.
+  主要使用 `NotificationCompat.Build` 类, 设置一些属性.
 
 - 发送通知
   
-  使用 NotificationManager 的 notify 方法. 需要指定 notification id.
+  使用 `NotificationManager` 的 notify 方法. 需要指定 notification id.
 
+比如以下的代码:
+```kotlin
+val nt = NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_nt_small)
+                .setContentTitle("Simple Notification")
+                .setContentTitle("This is a simple notification, the id is ${id.get()}, " +
+                        "the channel id is ${CHANNEL_ID}")
+                .build()
+val m = NotificationManagerCompat.from(this)
+m.notify(id.getAndIncrement(), nt)
+```
+
+### 处理点击通知的事件
+
+Android 可以利用 PendingIntent 机制来处理通知的点击事件. 在创建好 PendingIntent 后使用 Builder
+的 `setContentIntent` 方法即可.
+
+### 点击后隐藏.
+`builder.setAutoCancel(true)`
+
+### 添加一个 Action
+可以通过 `builder.addAction()` 方法添加一个 Action. 需要指定图标, 标签和一个 PendingIntent
+
+### 添加直接回复
+1. 使用 `RemoteInput.Builder` 来创建一个 `RemoteInput`.
+2. 创建一个 `PendingIntent` 了进行回复.
+3. 创建一个 `NotificationCompat.Action`, 并通过 `setRemoteInput` 来设置 Action 的 `RemoteInput`
+4. 将 Action 和通知绑定.
+5. **获取用户回复的信息**. 调用`RemoteInput.getResultFromIntent()`可以获得.
+6. 使用 `NotificationCompat.notify()` 更新对应的通知.
