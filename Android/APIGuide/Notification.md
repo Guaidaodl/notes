@@ -82,3 +82,11 @@ Android 可以利用 PendingIntent 机制来处理通知的点击事件. 在创�
 4. 将 Action 和通知绑定.
 5. **获取用户回复的信息**. 调用`RemoteInput.getResultFromIntent()`可以获得.
 6. 使用 `NotificationCompat.notify()` 更新对应的通知.
+
+想到一个小点子, 可以用该 API 来做一个通知栏翻译的小插件.
+
+### MessagingStyle
+对于聊天型的通知可以通过 MessagingStyle 来显示多条聊天信息. 通过 `NotificationCompat.MessageStyle`
+可以构建一个聊天的信息流. 
+
+Android P(API 28, 9.0) 后增加了 Person 类, 可以更方便地管理通知.
