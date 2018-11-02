@@ -3,4 +3,9 @@
   ```
   git log --stat
   ```
+ 
+- 生成 Patch 文件
+  ```
+  git patch-format <commit-id1>..<commit-id2>
+  ```
 
