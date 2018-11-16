@@ -9,3 +9,19 @@
   git patch-format <commit-id1>..<commit-id2>
   ```
 
+## 花式 diff
+- 两个 branch 之间的 diff 
+  ```
+  git diff branch1..branch2
+  ```
+- diff 只显示文件名:
+  ```
+  git diff --name-only
+  ```
+- diff 只显示文件的增删改查
+  ```
+  git diff --stat
+  ```
+ 
+ 
+
