@@ -7,3 +7,7 @@ adb install -t
 ```
 adb install -r
 ```
+### Dump 出 Log
+```
+adb logcat -d
+```
