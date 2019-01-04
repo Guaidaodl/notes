@@ -9,6 +9,10 @@
   git patch-format <commit-id1>..<commit-id2>
   ```
 
+- 显示指定 HashTag 的 Commit
+  ```
+  git show <hash-tag>
+  ```
 ## 花式 diff
 - 两个 branch 之间的 diff 
   ```
