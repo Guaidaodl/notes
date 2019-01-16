@@ -13,6 +13,11 @@
   ```
   git show <hash-tag>
   ```
+## Branch 相关
+- 列出当前的 branch
+  ```
+  git rev-parse --abbrev-ref HEAD
+  ```
 ## 花式 diff
 - 两个 branch 之间的 diff 
   ```
