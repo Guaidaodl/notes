@@ -31,6 +31,30 @@
   ```
   git diff --stat
   ```
+  
+## Powershell 与 fzf
+  ```Powershell
+  function Switch-Git-Branch 
+  {
+      $br = Select-Git-Branch
+      Write-Output $br
+      if (-not [String]::IsNullOrEmpty($br)) {
+          git checkout $br.trim()
+      }
+  }
+
+  function Select-Git-Branch
+  {
+      if (($args.Count -eq 1) -and ($args[0] -eq '-r')) {
+          $bs = git branch -r
+      } else {
+          $bs = git branch
+      }
+      if ([String]::IsNullOrEmpty($bs)) { return }
+
+      return (Write-Output $bs | fzf.exe)
+  }
+  ```
  
  
 
