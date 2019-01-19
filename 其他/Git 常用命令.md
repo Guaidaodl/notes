@@ -13,6 +13,10 @@
   ```
   git show <hash-tag>
   ```
+- 获取 git 的目录, 可以用来判断是否在 git 目录里
+  ```
+  git rev-parse --git-dir
+  ```
 ## Branch 相关
 - 列出当前的 branch
   ```
@@ -33,28 +37,57 @@
   ```
   
 ## Powershell 与 fzf
-  ```Powershell
-  function Switch-Git-Branch 
-  {
-      $br = Select-Git-Branch
-      Write-Output $br
-      if (-not [String]::IsNullOrEmpty($br)) {
-          git checkout $br.trim()
-      }
-  }
+```Powershell
+# 通过 fzf 选择一个分支. -r 选项可以选择远程分支.
+function Select-Branch
+{
+    if (($args.Count -eq 1) -and ($args[0] -eq '-r')) {
+        $bs = git branch -r
+    } else {
+        $bs = git branch
+    }
+    if ([String]::IsNullOrEmpty($bs)) { return ""}
 
-  function Select-Git-Branch
-  {
-      if (($args.Count -eq 1) -and ($args[0] -eq '-r')) {
-          $bs = git branch -r
-      } else {
-          $bs = git branch
-      }
-      if ([String]::IsNullOrEmpty($bs)) { return }
+    $selectedBranch = (Write-Output $bs | fzf.exe)
+    if ([String]::IsNullOrEmpty($selectedBranch)) { return ""}
 
-      return (Write-Output $bs | fzf.exe)
-  }
-  ```
+    return $selectedBranch.trim()
+}
+
+# 切换到 fzf 选择的分支, -r 选项可以选择远程分支.
+function Switch-Branch 
+{
+    $br = Select-Branch
+    if (-not [String]::IsNullOrEmpty($br)) {
+        git checkout $br
+    }
+}
+
+function Merge-Branch
+{
+    $br = Select-Branch
+    if (-not [String]::IsNullOrEmpty($br)) {
+        git merge $br
+    }
+}
+
+# 将当前分支提交到 Gerrit 上.
+function Push-Gerrit
+{
+    if (-not (git rev-parse --git-dir)) {
+        return
+    };
+
+    $branchName = git rev-parse --abbrev-ref HEAD
+
+    git push origin HEAD:refs/for/$branchName
+}
+
+Set-Alias -Name gch -Value Switch-Branch
+Set-Alias -Name gsb -Value Select-Branch
+Set-Alias -Name gpg -Value Push-Gerrit
+Set-Alias -Name gmb -Value Merge-Branch
+```
  
  
 
