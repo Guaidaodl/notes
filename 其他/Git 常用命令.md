@@ -51,7 +51,8 @@ function Select-Branch
     $selectedBranch = (Write-Output $bs | fzf.exe)
     if ([String]::IsNullOrEmpty($selectedBranch)) { return ""}
 
-    return $selectedBranch.trim()
+    # 去掉 origin/
+    return $selectedBranch.trim() -replace 'origin/'
 }
 
 # 切换到 fzf 选择的分支, -r 选项可以选择远程分支.
