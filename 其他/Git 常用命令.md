@@ -17,6 +17,10 @@
   ```
   git rev-parse --git-dir
   ```
+- 列出所有的分支和该分支上的最后一个提交者.
+  ```
+  git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n
+  ```
 ## Branch 相关
 - 列出当前的 branch
   ```
