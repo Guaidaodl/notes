@@ -39,7 +39,21 @@
   ```
   git diff --stat
   ```
-  
+## 密码相关
+
+### 设置密码的保存方式.
+
+可以通过设置 credential.helper 来设置密码的保存方式. 可选值有:
+- cache 使用内存缓存. 过一段时间后清空
+- store 明文保存到文件中.
+- osxkeychain 使用 Mac 系统的密码存储.
+
+### 清空 ssh private key 的密码
+运行:
+```
+ssh-keygen -p
+```
+ 
 ## Powershell 与 fzf
 ```Powershell
 # 通过 fzf 选择一个分支. -r 选项可以选择远程分支.
