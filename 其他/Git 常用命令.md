@@ -26,6 +26,11 @@
   ```
   git rev-parse --abbrev-ref HEAD
   ```
+- 列出两个分支的不同
+  ```
+  git cherry branch
+  ```
+  -v 除了 hash 值外还附带 commit log 的首行
 ## 花式 diff
 - 两个 branch 之间的 diff 
   ```
