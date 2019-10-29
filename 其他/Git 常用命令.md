@@ -58,7 +58,9 @@
 ```
 ssh-keygen -p
 ```
- 
+## Powershell 显示 log 乱码
+在系统环境变量中添加变量LESSCHARSET为utf-8.
+
 ## Powershell 与 fzf
 ```Powershell
 # 通过 fzf 选择一个分支. -r 选项可以选择远程分支.
