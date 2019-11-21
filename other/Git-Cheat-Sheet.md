@@ -114,5 +114,52 @@ Set-Alias -Name gpg -Value Push-Gerrit
 Set-Alias -Name gmb -Value Merge-Branch
 ```
  
- 
+## zsh 与 fzf
+``` bash
+# 打印选中的分支
+function gsb() {
+    git rev-parse --git-dir 1>/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        (>&2 echo "Not in git dir")
+        echo ""
+    fi
+    local branches branch
+    branches=$(git --no-pager branch -vv) &&
+    branch=$(echo "$branches" | fzf +m --reverse --height 40% | sed "s/^*//"| awk '{print $1}') &&
+
+    echo $branch
+}
+
+# 推送到 Gerrit
+function gpg() {
+    git rev-parse --git-dir 1>/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        (>&2 echo "Not in git dir")
+        return -1
+    fi
+
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git push origin HEAD:refs/for/$branch
+}
+
+function gch() {
+  local branches branch
+  branches=$(git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf +m --reverse --height 40%) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+function gchr() {
+  local branch=$(git branch -r | fzf +m --reverse --height 40% | sed "s/^ *origin\///1")
+
+  if [ -n "$branch" ]; then
+    git checkout $branch
+  fi
+}
+
+function gmb() {
+    git merge `gsb`
+}
+```
 
